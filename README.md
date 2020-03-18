@@ -4,6 +4,8 @@ If you would be interested in helping to maintain one of the most successful WYS
 
 # Change
 iframe下，toolbar的定位支持
+
+```javascript
 this.editor = new MediumEditor(target, {
             ownerDocument: iframe.contentWindow.document,
             contentWindow: iframe.contentWindow,
@@ -29,7 +31,7 @@ this.editor = new MediumEditor(target, {
                 //'superscript','subscript', 'justifyFull','pre','html',
             }
         });
-
+```
 Toolbar 增加 relativeContainer 以便在编辑IFRAME的时候定位toolbar
 
 # MediumEditor
