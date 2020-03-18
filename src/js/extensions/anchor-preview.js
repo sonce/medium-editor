@@ -26,10 +26,19 @@
         */
         showOnEmptyLinks: true,
 
+        /* relativeContainer: [node]
+        * appending the toolbar to a given node instead of body
+        */
+        relativeContainer: null,
+
         init: function () {
             this.anchorPreview = this.createPreview();
 
-            this.getEditorOption('elementsContainer').appendChild(this.anchorPreview);
+            if (!this.relativeContainer) {
+                this.getEditorOption('elementsContainer').appendChild(this.anchorPreview);
+            } else {
+                this.relativeContainer.appendChild(this.anchorPreview);
+            }
 
             this.attachToEditables();
         },
@@ -79,7 +88,7 @@
 
         showPreview: function (anchorEl) {
             if (this.anchorPreview.classList.contains('medium-editor-anchor-preview-active') ||
-                    anchorEl.getAttribute('data-disable-preview')) {
+                anchorEl.getAttribute('data-disable-preview')) {
                 return true;
             }
 
@@ -97,7 +106,13 @@
 
             this.activeAnchor = anchorEl;
 
-            this.positionPreview();
+            this.trigger('positionAnchorPreview', {}, anchorEl);
+
+            if (!this.relativeContainer) {
+                this.positionPreview();
+            }
+
+            this.trigger('positionedAnchorPreview', {}, anchorEl);
             this.attachPreviewHandlers();
 
             return this;

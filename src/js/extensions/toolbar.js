@@ -537,7 +537,7 @@
                     }
                 }
 
-                this.trigger('positionedToolbar', {}, this.base.getFocusedElement());
+                this.trigger('positionedToolbar', selection, this.base.getFocusedElement());
             }
         },
 

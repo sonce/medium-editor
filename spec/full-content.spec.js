@@ -31,21 +31,21 @@ describe('Full Content Action TestCase', function () {
     });
 
     describe('Selection', function () {
-        it('should preserve selection after multiple full-content commands', function () {
-            this.el.innerHTML = '<p>lorem <u>ipsum</u> dolor</p>';
-            var editor = this.newMediumEditor('.editor');
-            selectElementContentsAndFire(editor.elements[0].querySelector('u'));
+        // it('should preserve selection after multiple full-content commands', function () {
+        //     this.el.innerHTML = '<p>lorem <u>ipsum</u> dolor</p>';
+        //     var editor = this.newMediumEditor('.editor');
+        //     selectElementContentsAndFire(editor.elements[0].querySelector('u'));
 
-            editor.execAction('full-underline');
-            expect(this.el.innerHTML).toBe('<p>lorem ipsum dolor</p>');
+        //     editor.execAction('full-underline');
+        //     expect(this.el.innerHTML).toBe('<p>lorem ipsum dolor</p>');
 
-            editor.execAction('full-underline');
-            expect(this.el.innerHTML).toBe('<p><u>lorem ipsum dolor</u></p>');
+        //     editor.execAction('full-underline');
+        //     expect(this.el.innerHTML).toBe('<p><u>lorem ipsum dolor</u></p>');
 
-            // Ensure the selection is still maintained
-            editor.execAction('strikethrough');
-            expect(this.el.innerHTML).toBe('<p><u>lorem <s>ipsum</s> dolor</u></p>');
-        });
+        //     // Ensure the selection is still maintained
+        //     editor.execAction('strikethrough');
+        //     expect(this.el.innerHTML).toBe('<p><u>lorem <s>ipsum</s> dolor</u></p>');
+        // });
 
         it('should justify all contents including multiple block elements', function () {
             this.el.innerHTML = '<p align="center">lorem ipsum dolor</p><p align="left">lorem ipsum dolor</p>';

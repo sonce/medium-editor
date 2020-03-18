@@ -106,8 +106,10 @@ describe('MediumEditor.extensions.toolbar TestCase', function () {
             editor.subscribe('positionedToolbar', callback);
 
             selectElementContentsAndFire(this.el);
+            // var exportedSelection = MediumEditor.selection.exportSelection(this.el, document);
+            // var exportedSelection = window.getSelection()
 
-            expect(callback).toHaveBeenCalledWith({}, this.el);
+            expect(callback).toHaveBeenCalledWith(window.getSelection(), this.el);
         });
 
         it('should trigger positionToolbar before setToolbarPosition is called', function () {

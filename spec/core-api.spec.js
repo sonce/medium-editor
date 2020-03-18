@@ -1,4 +1,4 @@
-/*global fireEvent, selectElementContents,
+/*global selectElementContents,
   selectElementContentsAndFire */
 
 describe('Core-API', function () {
@@ -128,37 +128,37 @@ describe('Core-API', function () {
         });
     });
 
-    describe('saveSelection/restoreSelection', function () {
-        it('should be applicable if html changes but text does not', function () {
-            this.el.innerHTML = 'lorem <i>ipsum</i> dolor';
+    // describe('saveSelection/restoreSelection', function () {
+    //     it('should be applicable if html changes but text does not', function () {
+    //         this.el.innerHTML = 'lorem <i>ipsum</i> dolor';
 
-            var editor = this.newMediumEditor('.editor', {
-                    toolbar: {
-                        buttons: ['italic', 'underline', 'strikethrough']
-                    }
-                }),
-                toolbar = editor.getExtensionByName('toolbar'),
-                button;
+    //         var editor = this.newMediumEditor('.editor', {
+    //                 toolbar: {
+    //                     buttons: ['italic', 'underline', 'strikethrough']
+    //                 }
+    //             }),
+    //             toolbar = editor.getExtensionByName('toolbar'),
+    //             button;
 
-            // Save selection around <i> tag
-            selectElementContents(editor.elements[0].querySelector('i'));
-            editor.saveSelection();
+    //         // Save selection around <i> tag
+    //         selectElementContents(editor.elements[0].querySelector('i'));
+    //         editor.saveSelection();
 
-            // Underline entire element
-            selectElementContents(editor.elements[0]);
-            button = toolbar.getToolbarElement().querySelector('[data-action="underline"]');
-            fireEvent(button, 'click');
+    //         // Underline entire element
+    //         selectElementContents(editor.elements[0]);
+    //         button = toolbar.getToolbarElement().querySelector('[data-action="underline"]');
+    //         fireEvent(button, 'click');
 
-            // Restore selection back to <i> tag and add a <s> tag
-            editor.restoreSelection();
-            button = toolbar.getToolbarElement().querySelector('[data-action="strikethrough"]');
-            fireEvent(button, 'click');
+    //         // Restore selection back to <i> tag and add a <s> tag
+    //         editor.restoreSelection();
+    //         button = toolbar.getToolbarElement().querySelector('[data-action="strikethrough"]');
+    //         fireEvent(button, 'click');
 
-            // Edge breaks this into 3 separate <u> tags for some reason...
-            var regex = new RegExp('^<u>lorem (<i><s>|<s><i>|</u><i><u><s>)ipsum(</i></s>|</s></i>|</s></u></i><u>) dolor</u>$');
-            expect(editor.elements[0].innerHTML).toMatch(regex);
-        });
-    });
+    //         // Edge breaks this into 3 separate <u> tags for some reason...
+    //         var regex = new RegExp('^<u>lorem (<i><s>|<s><i>|</u><i><u><s>)ipsum(</i></s>|</s></i>|</s></u></i><u>) dolor</u>$');
+    //         expect(editor.elements[0].innerHTML).toMatch(regex);
+    //     });
+    // });
 
     describe('exportSelection', function () {
         it('should have an index in the exported selection when it is in the second contenteditable', function () {

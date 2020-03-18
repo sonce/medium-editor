@@ -649,6 +649,16 @@
             }
         },
 
+        addDataAttr: function (el, obj) {
+            for (var propertyName in obj) {
+                var dataVal = obj[propertyName];
+                if (typeof dataVal === 'undefined' || dataVal.toString().trim() === '') {
+                    continue;
+                }
+                el.setAttribute('data-' + propertyName, obj[propertyName].toString());
+            }
+        },
+
         isListItem: function (node) {
             if (!node) {
                 return false;

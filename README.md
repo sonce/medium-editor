@@ -2,6 +2,36 @@
 
 If you would be interested in helping to maintain one of the most successful WYSIWYG text editors on github, let us know!  (See issue [#1503](https://github.com/yabwe/medium-editor/issues/1503))
 
+# Change
+iframe下，toolbar的定位支持
+this.editor = new MediumEditor(target, {
+            ownerDocument: iframe.contentWindow.document,
+            contentWindow: iframe.contentWindow,
+            elementsContainer: iframe.contentWindow.document.body,
+            buttonLabels: 'fontawesome',
+            extensions: {
+                'pickanchor': pickanchor.createInstance(this.designer, {
+                    /* These are the default options for anchor form,
+                       if nothing is passed this is what it used */
+                    linkValidation: true,
+                    targetCheckbox: true
+                }),
+                'colorPicker': colorPicker.createInstance()
+            },
+            toolbar: {
+                relativeContainer: document.body,
+                diffTop: 5,
+                buttons: ['bold', 'italic', 'underline', 'strikethrough', 'anchor',
+                    'justifyLeft', 'justifyCenter', 'justifyRight',
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                    'quote', 'orderedlist', 'unorderedlist', 'indent', 'outdent', 'colorPicker',
+                    'removeFormat']
+                //'superscript','subscript', 'justifyFull','pre','html',
+            }
+        });
+
+Toolbar 增加 relativeContainer 以便在编辑IFRAME的时候定位toolbar
+
 # MediumEditor
 
 This is a clone of [medium.com](https://medium.com) inline editor toolbar.
